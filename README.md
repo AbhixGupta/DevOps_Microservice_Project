@@ -30,8 +30,8 @@ sudo apt-get install jenkins -y
 
 ### SonarQube
 
-- Centos7 AMI is needed.
-- Minimum t2.small instance is needed.
+- Ubuntu 18 AMI is needed.
+- Minimum t2.medium instance is needed.
 
 ```bash
 #!/bin/bash
