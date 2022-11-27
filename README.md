@@ -6,6 +6,7 @@
 
 - Ubuntu 18 or 20 version
 - t2.small type AWS instance minimum needed. (t2.micro will also work)
+- Add Tags
 
 Security Group:
 
@@ -32,6 +33,7 @@ sudo apt-get install jenkins -y
 
 - Ubuntu 18 AMI is needed.
 - Minimum t2.medium instance is needed.
+- Add tages
 
 ```bash
 #!/bin/bash
