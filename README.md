@@ -153,3 +153,80 @@ sonar.junit.reportsPath=target/surefire-reports/
 sonar.jacoco.reportsPath=target/jacoco.exec
 sonar.java.checkstyle.reportPaths=target/checkstyle-result.xml
 ```
+
+### Kops Setup
+
+Prerequisites:
+
+- Domain for Kubernetes DNS Record (ex: groophy.in)
+- Create Linux Virtual Machine and setup
+  - Kubectl
+  - Kops
+  - ssh-keys
+  - awscli
+- Login into AWS Account and Setup
+  - s3 Bucket
+  - IAM User for AWS CLI
+  - Route53 Hosted Zone
+
+Kops Server Configuration:
+
+- Ubuntu Server 20.04 (t2.micro). Add Tags
+- Add New Kops Security Group (kops-SG).
+  - SSH 22
+- Launch Instance
+
+s3 Bucket:
+
+- Create one s3 bucket with name --> project-kops-state
+
+IAM User:
+
+1. Open IAM in AWS
+2. CLick User --> add user --> Username(kopsadmin)
+3. Check Programmatic Access --> Next.
+4. Click Attach existing policies --> check Administrators access --> Next.
+5. Click Create.
+
+Route53:
+
+1. Click on create hosted zone.
+2. Enter domain name. (ex: kubemajor.groophy.in)
+3. Check the Public hosted zone.
+4. Click create hosted zone.
+
+```bash
+ssh-keygen
+
+sudo apt update
+sudo apt install awscli -y
+aws configure
+
+# Kuberctl installation
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x ./kubectl
+sudo mv kubectl /usr/local/bin/
+kuberctl --help
+
+# Kops Installation
+curl -LO https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
+sudo chmod +x kops-linux-amd64
+sudo mv kops-linux-amd64 /usr/local/bin/kops
+kops --help
+
+nslookup -type=ns kubemajor.groophy.in
+
+# Cluster Creation
+ kops create cluster --name=kubemajor.groophy.in --state=s3://project-kops-state --zones=us-east-1a,us-east-1b --node-count=2 --node-size=t2.micro --master-size=t2.micro --dns-zone=kubemajor.groophy.in
+
+kops update cluster --name kubemajor.groophy.in --state=s3://project-kops-state --yes --admin
+
+kops validate cluster --state=s3://project-kops-state
+
+cat .kube/config
+kubectl get nodes
+
+kops delete cluster --name=kubemajor.groophy.in --state=s3://project-kops-state --yes
+```
+
+Note: Delete the AWS public hosted zone manually.
