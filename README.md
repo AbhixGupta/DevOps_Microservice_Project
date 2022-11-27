@@ -5,7 +5,7 @@
 ### Jenkins
 
 - Ubuntu 18 or 20 version
-- Small type AWS instance minimum needed.
+- t2.small type AWS instance minimum needed. (t2.micro will also work)
 
 Security Group:
 
@@ -29,6 +29,9 @@ sudo apt-get install jenkins -y
 ```
 
 ### SonarQube
+
+- Centos7 AMI is needed.
+- Minimum t2.small instance is needed.
 
 ```bash
 #!/bin/bash
