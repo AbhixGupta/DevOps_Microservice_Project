@@ -257,3 +257,53 @@ kops delete cluster --name=kubemajor.abhis.cloud --state=s3://project-kops-state
 ```
 
 Note: Delete the AWS public hosted zone manually.
+
+## Main Server Configuration
+
+### Jenkins
+
+````bash
+# Install the docker
+sudo apt-get update
+sudo apt-get remove docker docker-engine docker.io
+sudo apt install docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
+systemctl status docker
+
+# add jenkins in docker group
+sudo -i
+usermod -aG docker jenkins
+id jenkins
+reboot
+```bash
+
+Install the Jenkins Plugins:
+* Docker
+* Docker Pipeline
+* Pipeline Utility steps
+````
+
+### Kops Cluster
+
+Install the all the required dependencies:
+
+```bash
+export KOPS_STATE_STORE=s3://pro-kop-abc
+
+kops create cluster --cloud=aws --zones=us-east-1c --networking calico --master-size t2.medium --master-count 1 --node-size t2.medium --node-count 2 --name=mypro.abhis.cloud --dns-zone=mypro.abhis.cloud --dns public
+
+kops update cluster --name mypro.abhis.cloud --yes --admin
+
+# Helm Instllation
+wget https://get.helm.sh/helm-v3.9.3-linux-amd64.tar.gz
+tar xvf helm-v3.9.3-linux-amd64.tar.gz
+cd linux-amd64/
+sudo mv helm /usr/local/bin/helm
+cd
+heml
+
+kubectl get nodes
+kops get cluster
+kops validate cluster
+```
