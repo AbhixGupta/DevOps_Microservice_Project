@@ -115,7 +115,7 @@ rm -rf /etc/nginx/sites-available/default
 cat <<EOT> /etc/nginx/sites-available/sonarqube
 server{
     listen      80;
-    server_name sonarqube.groophy.in;
+    server_name sonarqube.abhis.cloud;
     access_log  /var/log/nginx/sonar.access.log;
     error_log   /var/log/nginx/sonar.error.log;
     proxy_buffers 16 64k;
@@ -166,7 +166,12 @@ Prerequisites:
   - awscli
 - Login into AWS Account and Setup
   - s3 Bucket
-  - IAM User for AWS CLI
+  - IAM User for AWS CLI. Add following roles for new user.
+    - AmazonS3FullAccess
+    - AmazonEC2FullAccess
+    - AmazonRoute53FullAccess
+    - IAMFullAccess
+    - AmazonVPCFullAccess
   - Route53 Hosted Zone
 
 Kops Server Configuration:
@@ -179,6 +184,7 @@ Kops Server Configuration:
 s3 Bucket:
 
 - Create one s3 bucket with name --> project-kops-state
+- Enable the Bucket Versioning
 
 IAM User:
 
@@ -196,37 +202,58 @@ Route53:
 4. Click create hosted zone.
 
 ```bash
-ssh-keygen
-
 sudo apt update
 sudo apt install awscli -y
+aws --version
 aws configure
 
 # Kuberctl installation
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-chmod +x ./kubectl
-sudo mv kubectl /usr/local/bin/
+sudo curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+
+sudo chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
 kuberctl --help
 
 # Kops Installation
 curl -LO https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
+
 sudo chmod +x kops-linux-amd64
 sudo mv kops-linux-amd64 /usr/local/bin/kops
 kops --help
+kops
+nslookup -type=ns kubemajor.abhis.cloud
 
-nslookup -type=ns kubemajor.groophy.in
+# s3 Bucket Creation
+aws s3 mb s3://pro-kop-abc
+aws s3api put-bucket-versioning --bucket pro-kop-abc --versioning-configuration Status=Enabled
+export KOPS_STATE_STORE=s3://pro-kop-abc
+
+# Create SSH Key
+ssh-keyegn
 
 # Cluster Creation
- kops create cluster --name=kubemajor.groophy.in --state=s3://project-kops-state --zones=us-east-1a,us-east-1b --node-count=2 --node-size=t2.micro --master-size=t2.micro --dns-zone=kubemajor.groophy.in
+kops create cluster --cloud=aws --zones=ap-south-1a --name=kubemajor.abhis.cloud --dns-zone=kubemajor.abhis.cloud --dns public
 
-kops update cluster --name kubemajor.groophy.in --state=s3://project-kops-state --yes --admin
+kops create cluster --cloud=aws --zones=ap-south-1a --networking calico --name=kubemajor.abhis.cloud --dns-zone=kubemajor.abhis.cloud --dns public
+
+kops create cluster --cloud=aws --zones=ap-south-1a,ap-south-1b --networking calico --master-size t3.medium --master-count 3 --node-size t3.xlarge --node-count 3 --name=kubemajor.abhis.cloud --dns-zone=kubemajor.abhis.cloud --dns public
+
+kops create cluster --name=kubemajor.abhis.cloud --state=s3://project-kops-state --zones=us-east-1a,us-east-1b --node-count=2 --node-size=t2.micro --master-size=t2.micro --dns-zone=kubemajor.abhis.cloud
+
+kops update cluster kubemajor.abhis.cloud --yes --admin
+kops validate cluster
+kubectl get nodes
+kubectl cluster-info
+kops delete cluster kubemajor.abhis.cloud --yes
+
+kops update cluster --name kubemajor.abhis.cloud --state=s3://project-kops-state --yes --admin
 
 kops validate cluster --state=s3://project-kops-state
 
 cat .kube/config
 kubectl get nodes
 
-kops delete cluster --name=kubemajor.groophy.in --state=s3://project-kops-state --yes
+kops delete cluster --name=kubemajor.abhis.cloud --state=s3://project-kops-state --yes
 ```
 
 Note: Delete the AWS public hosted zone manually.
