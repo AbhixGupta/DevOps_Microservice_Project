@@ -301,9 +301,14 @@ tar xvf helm-v3.9.3-linux-amd64.tar.gz
 cd linux-amd64/
 sudo mv helm /usr/local/bin/helm
 cd
-heml
+helm
 
 kubectl get nodes
 kops get cluster
 kops validate cluster
+
+## git
+git clone https://
+mkdir helm
+cd helm
 ```
