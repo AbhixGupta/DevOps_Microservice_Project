@@ -129,15 +129,15 @@
             <div class="container w3-padding-32" id="about">
               <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16" align="center">ABOUT</h3>
               <div class="w3-content" style="max-width:700px">
-                <p style="text-align:justify;">VisualPath is an IT Educational Institute.Established in 2001,and
-                  Institute offers world class quality of education and wide range of courses.VisualPath Institute has a
-                  dedicated placement team to help students get job placement in various IT job roles with major
-                  companies.
+                <p style="text-align:justify;">As DevOps is a business-driven method for delivering software, and AI is
+                  the technology that may be integrated into the system for improved functioning, they are mutually
+                  dependent. DevOps teams can test, code, release, and monitor software more effectively with the aid of
+                  AI. Additionally, AI can enhance automation, swiftly locate and fix problems, and enhance teamwork.
                 </p>
                 <p><strong>Address:</strong> Bell Road, graphci Era University
                 </p>
                 <p><strong>Ph No: </strong> +91-1234556844, 898986563</p>
-                <p><strong>E-Mail ID :</strong> abhis.cloud</p>
+                <p><strong>E-Mail ID :</strong> abhicloud@abhis.cloud</p>
               </div>
             </div>
 
