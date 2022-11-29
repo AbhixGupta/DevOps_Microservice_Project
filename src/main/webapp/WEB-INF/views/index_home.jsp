@@ -23,8 +23,8 @@
                         <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span
                           class="icon-bar"></span><span class="icon-bar"></span>
                       </button>
-                      <a class="navbar-brand" href="${contextPath}/index">Abhi Cloud</a>
-                      <i class="brand_network"><small><small>abhixgupta</small></small></i>
+                      <a class="navbar-brand" href="${contextPath}/index">AbhiCloud</a>
+                      <i class="brand_network"><small><small>Cloud</small></small></i>
                     </div>
                     <div class="navbar-collapse collapse">
                       <ul class="nav navbar-nav">
@@ -134,10 +134,10 @@
                   dedicated placement team to help students get job placement in various IT job roles with major
                   companies.
                 </p>
-                <p><strong>Address:</strong> Bell Road, Graphic Era University
+                <p><strong>Address:</strong> Bell Road, graphci Era University
                 </p>
-                <p><strong>Ph No: </strong> +91-9778899933</p>
-                <p><strong>E-Mail ID :</strong> geu@geu.ac.in</p>
+                <p><strong>Ph No: </strong> +91-1234556844, 898986563</p>
+                <p><strong>E-Mail ID :</strong> abhis.cloud</p>
               </div>
             </div>
 
@@ -163,7 +163,7 @@
           <!-- Footer -->
           <footer class="w3-center  w3-padding-16" style="background-color:#1C3B47 ">
             <p style="color:#FFFFFF ">Copyright @2017 <a href="#" target="_blank" class="w3-hover-text-green">
-                visualpathit.com</a></p>
+                abhis.cloud</a></p>
           </footer>
 
 

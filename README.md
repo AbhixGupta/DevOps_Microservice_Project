@@ -320,4 +320,5 @@ kubectl create namespace prod
 kubectl get namespace
 helm list --namespace prod
 kubectl get all --namespace prod
+helm delete vprofile-stack --namespace prod
 ```
