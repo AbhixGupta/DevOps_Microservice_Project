@@ -34,7 +34,7 @@
                                                 width="30px" height="30px">
                                         </a>
                                         <a class="navbar-brand" href="#">AbhiCloud</a>
-                                        <i class="brand_network"><small><small>VP* Network</small></small></i>
+                                        <i class="brand_network"><small><small>Cloudk</small></small></i>
                                     </div>
                                     <div class="navbar-collapse collapse">
                                         <ul class="nav navbar-nav">
@@ -161,7 +161,8 @@
                                         ${pageContext.request.userPrincipal.name} &nbsp;
                                         <small>${pageContext.request.userPrincipal.name}@visualpath.co.in</small> <i
                                             class="fa fa-check text-success" aria-hidden="true" data-toggle="tooltip"
-                                            data-placement="bottom" title=" sharing with you"></i></h1>
+                                            data-placement="bottom" title=" sharing with you"></i>
+                                    </h1>
                                     <div class="dropdown pull-right">
 
                                         <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1"
@@ -508,7 +509,8 @@
                                         style="text-decoration:none;"><strong>${pageContext.request.userPrincipal.name}</strong></a>
                                     <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i
                                                         class="fa fa-clock-o" aria-hidden="true"></i> 42 minutes
-                                                    ago</i></a></small></small></h4>
+                                                    ago</i></a></small></small>
+                                </h4>
                                 <span>
                                     <div class="navbar-right">
                                         <div class="dropdown">
