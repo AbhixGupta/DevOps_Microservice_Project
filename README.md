@@ -312,3 +312,12 @@ git clone https://
 mkdir helm
 cd helm
 ```
+
+Other Commands Kops
+
+```bash
+kubectl create namespace prod
+kubectl get namespace
+helm list --namespace prod
+kubectl get all --namespace prod
+```
