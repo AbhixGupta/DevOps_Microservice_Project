@@ -1,5 +1,9 @@
 # DevOps_Microservice_Project
 
+## Architecture
+
+![Architeture Image](/image/dia.png)
+
 ## Servers Setup on AWS
 
 ### Jenkins
