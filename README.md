@@ -12,7 +12,7 @@
 - t2.small type AWS instance minimum needed. (t2.micro will also work)
 - Add Tags
 
-Security Group:
+Security Groups:
 
 - Allow SSH on port 22
 - Allow Custom TCP on port 8080
