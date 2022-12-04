@@ -317,7 +317,7 @@ mkdir helm
 cd helm
 ```
 
-Other Commands Important Kops:
+Other Commands Important Kops
 
 ```bash
 kubectl create namespace prod
