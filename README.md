@@ -4,7 +4,7 @@
 
 ![Architeture Image](/image/dia.png)
 
-## Server Setup on AWS
+## Servers Setup on AWS
 
 ### Jenkins
 
