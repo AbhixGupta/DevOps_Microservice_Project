@@ -1,6 +1,6 @@
 # DevOps_Microservice_Project
 
-## Architecture of Project::
+## Architecture of Project:::
 
 ![Architeture Image](/image/dia.png)
 
