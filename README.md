@@ -217,7 +217,7 @@ sudo curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -
 
 sudo chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
-kuberctl --help
+kubectl --help
 
 # Kops Installation
 curl -LO https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
@@ -269,9 +269,15 @@ Note: Delete the AWS public hosted zone manually.
 
 ````bash
 # Install the docker
+sudo apt-get remove docker docker-engine docker.io containerd runc
 sudo apt-get update
-sudo apt-get remove docker docker-engine docker.io
-sudo apt install docker.io
+sudo apt-get install     ca-certificates     curl     gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+echo   "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" |   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 sudo systemctl start docker
 sudo systemctl enable docker
 systemctl status docker
