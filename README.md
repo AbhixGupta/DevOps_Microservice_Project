@@ -300,7 +300,7 @@ Install the Jenkins Plugins:
 Install the all the required dependencies:
 
 ```bash
-export KOPS_STATE_STORE=s3://pro-kop-abc
+export KOPS_STATE_STORE=s3://project-kops-state
 
 kops create cluster --cloud=aws --zones=us-east-1c --networking calico --master-size t2.medium --master-count 1 --node-size t2.medium --node-count 2 --name=kubemajor.abhis.cloud --dns-zone=kubemajor.abhis.cloud --dns public
 
