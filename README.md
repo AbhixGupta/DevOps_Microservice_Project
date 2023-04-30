@@ -324,6 +324,19 @@ mkdir helm
 cd helm
 ```
 
+# Helm and Namespace creation
+
+```bash
+git clone https://github.com/AbhixGupta/DevOps_Microservice_Project.git
+rm -rf Jenkinsfile 'Setup files'/ image/
+kubectl create namespace test
+heml install --namspace test vprofile-stack heml/vprofilecharts --set appimage=imranvisualpath/vproappdock:9
+helm list --namespace teset
+helm delete vprofile-stack --namespace teset
+helm list --namespace teset
+kubectl create namespace prod
+```
+
 Other Commands Important Kops:
 
 ```bash
