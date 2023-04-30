@@ -302,9 +302,9 @@ Install the all the required dependencies:
 ```bash
 export KOPS_STATE_STORE=s3://pro-kop-abc
 
-kops create cluster --cloud=aws --zones=us-east-1c --networking calico --master-size t2.medium --master-count 1 --node-size t2.medium --node-count 2 --name=mypro.abhis.cloud --dns-zone=mypro.abhis.cloud --dns public
+kops create cluster --cloud=aws --zones=us-east-1c --networking calico --master-size t2.medium --master-count 1 --node-size t2.medium --node-count 2 --name=kubemajor.abhis.cloud --dns-zone=kubemajor.abhis.cloud --dns public
 
-kops update cluster --name mypro.abhis.cloud --yes --admin
+kops update cluster --name kubemajor.abhis.cloud --yes --admin
 
 # Helm Instllation
 wget https://get.helm.sh/helm-v3.9.3-linux-amd64.tar.gz
