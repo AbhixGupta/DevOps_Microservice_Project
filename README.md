@@ -332,8 +332,9 @@ rm -rf Jenkinsfile 'Setup files'/ image/
 kubectl create namespace test
 helm install --namespace test vprofile-stack helm/vprofilecharts --set appimage=imranvisualpath/vproappdock:9
 helm list --namespace teset
-helm delete vprofile-stack --namespace teset
-helm list --namespace teset
+kubctl get all --namespace test
+helm delete vprofile-stack --namespace test
+helm list --namespace test
 kubectl create namespace prod
 ```
 
