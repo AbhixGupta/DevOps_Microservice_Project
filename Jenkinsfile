@@ -39,7 +39,7 @@ pipeline {
 
         stage ('CODE ANALYSIS WITH CHECKSTYLE'){
             steps {
-                sh 'mvn checkstyle:checkstyle'
+                sh 'mvn checkstyle:checkstyle -DskipTests'
             }
             post {
                 success {
