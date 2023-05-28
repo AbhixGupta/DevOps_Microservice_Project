@@ -202,7 +202,7 @@ IAM User:
 Route53:
 
 1. Click on create hosted zone.
-2. Enter domain name. (ex: kubemajor.groophy.in)
+2. Enter domain name. (ex: abhimicro.groophy.in)
 3. Check the Public hosted zone.
 4. Click create hosted zone.
 
@@ -226,7 +226,7 @@ sudo chmod +x kops-linux-amd64
 sudo mv kops-linux-amd64 /usr/local/bin/kops
 kops --help
 kops
-nslookup -type=ns kubemajor.abhis.cloud
+nslookup -type=ns abhimicro.abhis.cloud
 
 # s3 Bucket Creation
 aws s3 mb s3://pro-kop-abc
@@ -237,28 +237,28 @@ export KOPS_STATE_STORE=s3://pro-kop-abc
 ssh-keyegn
 
 # Cluster Creation
-kops create cluster --cloud=aws --zones=ap-south-1a --name=kubemajor.abhis.cloud --dns-zone=kubemajor.abhis.cloud --dns public
+kops create cluster --cloud=aws --zones=ap-south-1a --name=abhimicro.abhis.cloud --dns-zone=abhimicro.abhis.cloud --dns public
 
-kops create cluster --cloud=aws --zones=ap-south-1a --networking calico --name=kubemajor.abhis.cloud --dns-zone=kubemajor.abhis.cloud --dns public
+kops create cluster --cloud=aws --zones=ap-south-1a --networking calico --name=abhimicro.abhis.cloud --dns-zone=abhimicro.abhis.cloud --dns public
 
-kops create cluster --cloud=aws --zones=ap-south-1a,ap-south-1b --networking calico --master-size t3.medium --master-count 3 --node-size t3.xlarge --node-count 3 --name=kubemajor.abhis.cloud --dns-zone=kubemajor.abhis.cloud --dns public
+kops create cluster --cloud=aws --zones=ap-south-1a,ap-south-1b --networking calico --master-size t3.medium --master-count 3 --node-size t3.xlarge --node-count 3 --name=abhimicro.abhis.cloud --dns-zone=abhimicro.abhis.cloud --dns public
 
-kops create cluster --name=kubemajor.abhis.cloud --state=s3://project-kops-state --zones=us-east-1a,us-east-1b --node-count=2 --node-size=t2.micro --master-size=t2.micro --dns-zone=kubemajor.abhis.cloud
+kops create cluster --name=abhimicro.abhis.cloud --state=s3://project-kops-state --zones=us-east-1a,us-east-1b --node-count=2 --node-size=t2.micro --master-size=t2.micro --dns-zone=abhimicro.abhis.cloud
 
-kops update cluster kubemajor.abhis.cloud --yes --admin
+kops update cluster abhimicro.abhis.cloud --yes --admin
 kops validate cluster
 kubectl get nodes
 kubectl cluster-info
-kops delete cluster kubemajor.abhis.cloud --yes
+kops delete cluster abhimicro.abhis.cloud --yes
 
-kops update cluster --name kubemajor.abhis.cloud --state=s3://project-kops-state --yes --admin
+kops update cluster --name abhimicro.abhis.cloud --state=s3://project-kops-state --yes --admin
 
 kops validate cluster --state=s3://project-kops-state
 
 cat .kube/config
 kubectl get nodes
 
-kops delete cluster --name=kubemajor.abhis.cloud --state=s3://project-kops-state --yes
+kops delete cluster --name=abhimicro.abhis.cloud --state=s3://project-kops-state --yes
 ```
 
 Note: Delete the AWS public hosted zone manually.
@@ -302,9 +302,9 @@ Install the all the required dependencies:
 ```bash
 export KOPS_STATE_STORE=s3://project-kops-state
 
-kops create cluster --cloud=aws --zones=us-east-1c --networking calico --master-size t2.medium --master-count 1 --node-size t2.medium --node-count 2 --name=kubemajor.abhis.cloud --dns-zone=kubemajor.abhis.cloud --dns public
+kops create cluster --cloud=aws --zones=us-east-1c --networking calico --master-size t2.medium --master-count 1 --node-size t2.medium --node-count 2 --name=abhimicro.abhis.cloud --dns-zone=abhimicro.abhis.cloud --dns public
 
-kops update cluster --name kubemajor.abhis.cloud --yes --admin
+kops update cluster --name abhimicro.abhis.cloud --yes --admin
 
 # Helm Instllation
 wget https://get.helm.sh/helm-v3.9.3-linux-amd64.tar.gz
@@ -324,7 +324,7 @@ mkdir helm
 cd helm
 ```
 
-# Helm and Namespace creation
+## Helm and Namespace creation
 
 ```bash
 git clone https://github.com/AbhixGupta/DevOps_Microservice_Project.git
@@ -336,6 +336,18 @@ kubectl get all --namespace test
 helm delete vprofile-stack --namespace test
 helm list --namespace test
 kubectl create namespace prod
+```
+
+## Jenkins File and Jenkins Node
+
+```bash
+sudo apt update
+sudo apt install default-jre
+java -version
+sudo apt install default-jdk
+javac -version
+sudo mkdir /opt/jenkins-slave
+sudo chown ubuntu:ubuntu /opt/jenkins-slave -R
 ```
 
 Other Commands Important Kops:
