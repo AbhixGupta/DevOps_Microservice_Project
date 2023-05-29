@@ -105,6 +105,12 @@ pipeline {
                     // sh "helm install vprofile-stack helm/vprofilecharts --set appimage=imranviualpath/vproappdock:9 --namespace prod"
                 }
         }
+        
+        {
+        always{
+            slackSend( channel: "#Jenkins", token: "slack_webhook token", color: "good", message: "Test Email")
+        }
+        }
 
     }
 
