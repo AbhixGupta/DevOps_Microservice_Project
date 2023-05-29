@@ -350,6 +350,8 @@ sudo mkdir /opt/jenkins-slave
 sudo chown ubuntu:ubuntu /opt/jenkins-slave -R
 ```
 
+## Allow traffic from sonarqube to jenkins
+
 Other Commands Important Kops:
 
 ```bash
