@@ -352,6 +352,10 @@ sudo chown ubuntu:ubuntu /opt/jenkins-slave -R
 
 ## Allow traffic from sonarqube to jenkins
 
+```bash
+
+```
+
 Other Commands Important Kops:
 
 ```bash
