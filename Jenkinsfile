@@ -106,10 +106,10 @@ pipeline {
                 }
         }
         
-        {
-        always{
-            slackSend( channel: "#jenkins", token: "slack_webhook token", color: "good", message: "Test Email")
-        }
+        post {
+            success {
+                slackSend "Build deployed successfully - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+            }
         }
 
     }
