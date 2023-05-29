@@ -108,7 +108,7 @@ pipeline {
         
         {
         always{
-            slackSend( channel: "#Jenkins", token: "slack_webhook token", color: "good", message: "Test Email")
+            slackSend( channel: "#jenkins", token: "slack_webhook token", color: "good", message: "Test Email")
         }
         }
 
